@@ -745,61 +745,80 @@ input:focus, select:focus, textarea:focus {
   }
 }
 
-/* MOBILE HERO VIDEO */
-@media (max-width: 768px) {
+
+/* IPHONE HERO VIDEO FIX */
+@media screen and (max-width: 768px) {
   .hero {
-    min-height: 100vh;
-    min-height: 100svh;
-    padding: 7rem 1rem 3rem;
-    align-items: end;
+    position: relative;
+    height: 100svh;
+    min-height: 650px;
+    padding: 90px 18px 35px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
   }
 
   .hero-video {
+    position: absolute;
     width: 100%;
     height: 100%;
+    inset: 0;
     object-fit: cover;
-    object-position: 65% center;
+    object-position: center center;
+    transform: none;
   }
 
   .hero-overlay {
     background: linear-gradient(
       to bottom,
-      rgba(62,42,31,.02) 0%,
-      rgba(62,42,31,.12) 35%,
-      rgba(62,42,31,.82) 100%
+      rgba(0,0,0,.05) 0%,
+      rgba(0,0,0,.10) 35%,
+      rgba(0,0,0,.80) 100%
     );
   }
 
   .hero-content {
+    width: 100%;
     max-width: 100%;
-    padding: 1rem .4rem;
-    margin-top: auto;
+    margin: 0;
+    padding: 20px 5px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
   }
 
   .hero h1 {
-    font-size: clamp(2.1rem, 8vw, 2.8rem);
+    font-size: 36px;
     line-height: 1.12;
   }
 
   .hero .lead {
-    font-size: .98rem;
+    font-size: 15px;
     line-height: 1.6;
-    margin-bottom: 1.5rem;
   }
 }
 
-/* SMALL MOBILE PHONES */
-@media (max-width: 380px) {
-  .hero-video {
-    object-position: 68% center;
-  }
 
-  .hero {
-    padding-left: .8rem;
-    padding-right: .8rem;
-  }
 
-  .hero h1 {
-    font-size: 2rem;
-  }
+
+
+/* ABOUT LOGO */
+.about-image {
+  aspect-ratio: 1 / 1;
+  background: var(--white);
+  border-radius: 4px;
+  box-shadow: 18px 18px 0 var(--beige);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  overflow: hidden;
+}
+
+.about-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
