@@ -1,5 +1,5 @@
 
-/* TRICIAS BEAUTY CONNER – WhatsApp booking system */
+/* TRICIAS BEAUTY CONNER – Automated booking system */
 (function () {
   "use strict";
 
@@ -69,9 +69,9 @@
 
   var serviceSelect = $("#service");
 
-  $$(".book-style").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      serviceSelect.value = btn.getAttribute("data-service");
+  $$(".book-style").forEach(function (button) {
+    button.addEventListener("click", function () {
+      serviceSelect.value = button.getAttribute("data-service");
 
       $("#booking").scrollIntoView({
         behavior: "smooth"
@@ -124,7 +124,7 @@
 
     if (!db) {
       slotsMessage(
-        "Please contact us on WhatsApp to arrange your preferred time."
+        "Booking availability is temporarily unavailable. Please contact the salon."
       );
       return;
     }
@@ -143,7 +143,7 @@
         console.error("Availability error:", res.error);
 
         slotsMessage(
-          "We could not check available times. Please contact us on WhatsApp."
+          "We could not check available times. Please try again later."
         );
         return;
       }
@@ -184,7 +184,7 @@
 
   dateInput.addEventListener("change", loadSlots);
 
-  // ---------- HELPERS ----------
+  // ---------- PHONE NUMBER HELPER ----------
 
   function normalizePhone(raw) {
     var digits = String(raw).replace(/\D/g, "");
@@ -201,34 +201,7 @@
     return digits;
   }
 
-  function prettyDate(iso) {
-    var p = iso.split("-");
-
-    return new Date(
-      +p[0],
-      +p[1] - 1,
-      +p[2]
-    ).toLocaleDateString("en-GB", {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-      year: "numeric"
-    });
-  }
-
-  function waLink(message) {
-    var number = String(cfg.WHATSAPP_NUMBER || "")
-      .replace(/\D/g, "");
-
-    if (!number) return null;
-
-    return "https://wa.me/" +
-      number +
-      "?text=" +
-      encodeURIComponent(message);
-  }
-
-  // ---------- WHATSAPP BOOKING ----------
+  // ---------- BOOKING FORM ----------
 
   var form = $("#booking-form");
   var msg = $("#form-message");
@@ -244,25 +217,30 @@
     });
   }
 
-  form.addEventListener("submit", function (e) {
+  form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     msg.hidden = true;
 
-    // Spam protection
+    // Honeypot spam protection
     if (form.elements["website"].value) return;
 
     var name = form.elements["name"].value.trim();
+
     var phone = normalizePhone(
       form.elements["whatsapp"].value
     );
+
     var service = form.elements["service"].value;
     var date = form.elements["date"].value;
+
     var timeEl = form.querySelector(
       'input[name="time"]:checked'
     );
+
     var notes = form.elements["notes"].value.trim();
 
+    // Validate customer details
     if (name.length < 2) {
       return showError("Please enter your full name.");
     }
@@ -282,51 +260,83 @@
     }
 
     if (!timeEl) {
-      return showError("Please choose your preferred available time.");
-    }
-
-    var time = timeEl.value;
-
-    // Prepare the message for Tricia
-    var message =
-      "Hello Tricias Beauty Conner! I would like to request an appointment.\n\n" +
-      "Name: " + name + "\n" +
-      "My WhatsApp: +" + phone + "\n" +
-      "Service: " + service + "\n" +
-      "Preferred date: " + prettyDate(date) + "\n" +
-      "Preferred time: " + time + "\n" +
-      (notes
-        ? "Additional information: " + notes + "\n"
-        : "") +
-      "\nPlease let me know if this time is available.\n\n" +
-      "Thank you!";
-
-    var url = waLink(message);
-
-    if (!url) {
       return showError(
-        "WhatsApp is not configured. Please contact the salon directly."
+        "Please choose your preferred available time."
       );
     }
 
-    // Show the WhatsApp confirmation screen
-    form.hidden = true;
-
-    var fallback = $("#wa-fallback");
-
-    if (fallback) {
-      fallback.href = url;
+    if (!db) {
+      return showError(
+        "The booking service is unavailable. Please contact the salon."
+      );
     }
 
-    $("#booking-success").hidden = false;
+    // Prevent multiple submissions
+    btn.disabled = true;
+    btn.textContent = "Sending request...";
 
-    $("#booking-success").scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
+    try {
+      var result = await db.functions.invoke(
+        "booking-workflow",
+        {
+          body: {
+            name: name,
+            whatsapp: phone,
+            service: service,
+            date: date,
+            time: timeEl.value,
+            notes: notes
+          }
+        }
+      );
 
-    // Open WhatsApp with the prepared message
-    window.location.href = url;
+      if (
+        result.error ||
+        !result.data ||
+        !result.data.success
+      ) {
+        console.error(
+          "Booking request error:",
+          result.error,
+          result.data
+        );
+
+        showError(
+          result.data && result.data.error
+            ? result.data.error
+            : "We could not submit your request. Please try again."
+        );
+
+        return;
+      }
+
+      // Show successful request message
+      form.hidden = true;
+
+      var fallback = $("#wa-fallback");
+
+      if (fallback) {
+        fallback.hidden = true;
+      }
+
+      $("#booking-success").hidden = false;
+
+      $("#booking-success").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+    } catch (error) {
+      console.error("Booking error:", error);
+
+      showError(
+        "Something went wrong. Please try again."
+      );
+
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Request Appointment";
+    }
   });
 
 })();

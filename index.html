@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TRICIAS BEAUTY CONNER | Beauty begins with your hair.</title>
-  <meta name="description" content="TRICIAS BEAUTY CONNER – wig installation, knotless braids, box braids, cornrows, twists and protective styles. Book your appointment on WhatsApp.">
+  <meta name="description" content="TRICIAS BEAUTY CONNER – professional hairstyling, wig installation, braids, cornrows and protective styles. Request your appointment online.">
   <meta name="theme-color" content="#C9A96E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,11 @@
     </svg>
     <span class="brand-name">TRICIAS BEAUTY CONNER</span>
   </a>
-  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
+
+  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+    <span></span><span></span>
+  </button>
+
   <nav id="nav" class="nav">
     <a href="#about">About</a>
     <a href="#services">Services</a>
@@ -35,6 +39,7 @@
 
 <main>
 
+<!-- HERO -->
 <section class="hero" id="home">
 
   <video class="hero-video" autoplay muted loop playsinline preload="auto">
@@ -113,8 +118,11 @@
     </div>
 
     <div class="service-grid">
+
       <article class="service-card reveal">
-        <figure class="service-photo"><img src="images/wig-installation.jpg" alt="Wig installation" loading="lazy" onerror="this.remove()"></figure>
+        <figure class="service-photo">
+          <img src="images/wig-installation.jpg" alt="Wig installation" loading="lazy" onerror="this.remove()">
+        </figure>
         <div class="service-body">
           <h3>Wig Installation</h3>
           <p>A flawless, natural-looking install that sits beautifully and feels comfortable all day.</p>
@@ -123,7 +131,9 @@
       </article>
 
       <article class="service-card reveal">
-        <figure class="service-photo"><img src="images/knotless-braids.jpg" alt="Knotless braids" loading="lazy" onerror="this.remove()"></figure>
+        <figure class="service-photo">
+          <img src="images/knotless-braids.jpg" alt="Knotless braids" loading="lazy" onerror="this.remove()">
+        </figure>
         <div class="service-body">
           <h3>Knotless Braids</h3>
           <p>Lightweight, seamless braids with a soft, natural start and a polished finish.</p>
@@ -132,7 +142,9 @@
       </article>
 
       <article class="service-card reveal">
-        <figure class="service-photo"><img src="images/box-braids.jpg" alt="Box braids" loading="lazy" onerror="this.remove()"></figure>
+        <figure class="service-photo">
+          <img src="images/box-braids.jpg" alt="Box braids" loading="lazy" onerror="this.remove()">
+        </figure>
         <div class="service-body">
           <h3>Box Braids</h3>
           <p>Classic, neat and versatile box braids in the length and size you love.</p>
@@ -141,7 +153,9 @@
       </article>
 
       <article class="service-card reveal">
-        <figure class="service-photo"><img src="images/cornrows.jpg" alt="Cornrows" loading="lazy" onerror="this.remove()"></figure>
+        <figure class="service-photo">
+          <img src="images/cornrows.jpg" alt="Cornrows" loading="lazy" onerror="this.remove()">
+        </figure>
         <div class="service-body">
           <h3>Cornrows</h3>
           <p>Sleek, precise cornrows, from simple and elegant to detailed and creative patterns.</p>
@@ -150,7 +164,9 @@
       </article>
 
       <article class="service-card reveal">
-        <figure class="service-photo"><img src="images/twists.jpg" alt="Twists" loading="lazy" onerror="this.remove()"></figure>
+        <figure class="service-photo">
+          <img src="images/twists.jpg" alt="Twists" loading="lazy" onerror="this.remove()">
+        </figure>
         <div class="service-body">
           <h3>Twists</h3>
           <p>Beautiful twisted styles that protect your hair and keep you looking effortlessly chic.</p>
@@ -159,13 +175,16 @@
       </article>
 
       <article class="service-card reveal">
-        <figure class="service-photo"><img src="images/protective-styles.jpg" alt="Other protective styles" loading="lazy" onerror="this.remove()"></figure>
+        <figure class="service-photo">
+          <img src="images/protective-styles.jpg" alt="Other protective styles" loading="lazy" onerror="this.remove()">
+        </figure>
         <div class="service-body">
           <h3>Other Protective Styles</h3>
           <p>Have something else in mind? Tell us your vision and we will bring it to life.</p>
           <button type="button" class="btn btn-outline book-style" data-service="Other Protective Styles">BOOK THIS STYLE</button>
         </div>
       </article>
+
     </div>
   </div>
 </section>
@@ -173,13 +192,19 @@
 <!-- BOOKING -->
 <section class="section booking" id="booking">
   <div class="container booking-wrap">
+
     <div class="section-head reveal">
       <p class="eyebrow">Booking</p>
       <h2>Book your appointment</h2>
-      <p>Choose your style and date, then send your request on WhatsApp. Tricia will confirm your appointment personally.</p>
+      <p>
+        Choose your hairstyle and preferred appointment time.
+        Submit your request online and Tricia will personally
+        confirm your appointment.
+      </p>
     </div>
 
     <form id="booking-form" class="booking-form reveal" novalidate>
+
       <div class="field">
         <label for="name">Full name</label>
         <input id="name" name="name" type="text" autocomplete="name" required maxlength="100">
@@ -220,32 +245,48 @@
         <textarea id="notes" name="notes" rows="3" maxlength="600" placeholder="Hair length, size, colour, anything we should know…"></textarea>
       </div>
 
-      <!-- spam trap -->
+      <!-- Spam trap -->
       <div class="hp" aria-hidden="true">
-        <label>Leave empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        <label>
+          Leave empty
+          <input type="text" name="website" tabindex="-1" autocomplete="off">
+        </label>
       </div>
 
       <p id="form-message" class="form-message" role="alert" hidden></p>
 
       <button type="submit" class="btn btn-whatsapp field-wide" id="submit-btn">
-        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9.5L5 21.5V18H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm4 5.5a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H8Zm0 3.5a1 1 0 1 0 0 2h5a1 1 0 1 0 0-2H8Z"/></svg>
-        BOOK NOW ON WHATSAPP
+        REQUEST APPOINTMENT
       </button>
+
     </form>
 
-    <!-- Corrected WhatsApp booking confirmation message -->
+    <!-- BOOKING SUCCESS MESSAGE -->
     <div id="booking-success" class="booking-success" hidden>
-      <h3>Your booking request is ready!</h3>
-      <p>WhatsApp will open with your appointment details. Please press SEND to deliver your request to Tricia.</p>
-      <a id="wa-fallback" class="btn btn-whatsapp" target="_blank" rel="noopener">SEND BOOKING REQUEST ON WHATSAPP</a>
-      <p class="small">Your appointment is only confirmed after Tricia contacts you personally.</p>
+      <h3>Your booking request has been received!</h3>
+
+      <p>
+        Thank you for choosing Tricias Beauty Conner.
+        Your preferred appointment time is being held for two hours
+        while Tricia reviews your request.
+      </p>
+
+      <p>
+        Tricia will contact you personally to confirm your appointment.
+      </p>
+
+      <p class="small">
+        Your appointment is not confirmed until Tricia approves it.
+      </p>
     </div>
+
   </div>
 </section>
 
 <!-- CONTACT -->
 <section class="section contact" id="contact">
   <div class="container contact-grid">
+
     <div class="reveal">
       <p class="eyebrow">Contact</p>
       <h2>Let's talk hair</h2>
@@ -253,10 +294,21 @@
     </div>
 
     <div class="contact-list reveal">
-      <p><span class="label">WhatsApp</span><a href="https://wa.me/34631653956" target="_blank" rel="noopener">+34 631 653 956</a></p>
-      <p><span class="label">Instagram</span><a href="https://www.instagram.com/tr_icia690/" target="_blank" rel="noopener">@tr_icia690</a></p>
-      <a class="btn btn-whatsapp" href="https://wa.me/34631653956?text=Hello%20Tricias%20Beauty%20Conner!" target="_blank" rel="noopener">CHAT ON WHATSAPP</a>
+      <p>
+        <span class="label">WhatsApp</span>
+        <a href="https://wa.me/34631653956" target="_blank" rel="noopener">+34 631 653 956</a>
+      </p>
+
+      <p>
+        <span class="label">Instagram</span>
+        <a href="https://www.instagram.com/tr_icia690/" target="_blank" rel="noopener">@tr_icia690</a>
+      </p>
+
+      <a class="btn btn-whatsapp" href="https://wa.me/34631653956?text=Hello%20Tricias%20Beauty%20Conner!" target="_blank" rel="noopener">
+        CHAT ON WHATSAPP
+      </a>
     </div>
+
   </div>
 
   <!-- SALON LOCATION -->
@@ -290,27 +342,36 @@
       </a>
     </p>
   </div>
+
 </section>
 
 </main>
 
+<!-- FOOTER -->
 <footer class="site-footer">
   <p class="footer-brand">TRICIAS BEAUTY CONNER</p>
   <p class="footer-tag">Beauty begins with your hair.</p>
+
   <p class="footer-links">
     <a href="https://www.instagram.com/tr_icia690/" target="_blank" rel="noopener">Instagram @tr_icia690</a>
     <span aria-hidden="true">·</span>
     <a href="https://wa.me/34631653956" target="_blank" rel="noopener">WhatsApp +34 631 653 956</a>
   </p>
-  <p class="copy">&copy; <span id="year">2026</span> TRICIAS BEAUTY CONNER. All rights reserved.</p>
+
+  <p class="copy">
+    &copy; <span id="year">2026</span> TRICIAS BEAUTY CONNER. All rights reserved.
+  </p>
 </footer>
 
 <a class="wa-float" href="https://wa.me/34631653956" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-  <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9.5L5 21.5V18H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm4 5.5a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H8Zm0 3.5a1 1 0 1 0 0 2h5a1 1 0 1 0 0-2H8Z"/></svg>
+  <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+    <path fill="currentColor" d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9.5L5 21.5V18H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm4 5.5a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H8Zm0 3.5a1 1 0 1 0 0 2h5a1 1 0 1 0 0-2H8Z"/>
+  </svg>
 </a>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js"></script>
 <script src="app.js"></script>
+
 </body>
 </html>
