@@ -177,19 +177,24 @@
   // ---------- BOOKINGS ----------
 
   function loadBookings() {
-    db.from("bookings").select("*")
-      .order("booking_date", { ascending: true })
-      .order("booking_time", { ascending: true })
-      .then(function (res) {
-        if (res.error) {
-          toast("Could not load appointments.", true);
-          return;
-        }
+  db.from("bookings").select("*")
+    .order("booking_date", { ascending: true })
+    .order("booking_time", { ascending: true })
+    .then(function (res) {
+      if (res.error) {
+        console.error("Booking loading error:", res.error);
+        toast(
+          "Could not load appointments: " + res.error.message,
+          true
+        );
+        return;
+      }
 
-        all = res.data || [];
-        render();
-      });
-  }
+      console.log("Bookings retrieved:", res.data);
+      all = res.data || [];
+      render();
+    });
+}
 
   function render() {
     var pending = all.filter(function (b) {
