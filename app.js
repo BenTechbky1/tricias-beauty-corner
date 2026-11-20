@@ -1,5 +1,5 @@
 
-/* TRICIAS BEAUTY CONNER – Automated booking system */
+/* TRICIAS BEAUTY CONNER – WhatsApp booking system */
 (function () {
   "use strict";
 
@@ -273,69 +273,78 @@
 
     // Prevent multiple submissions
     btn.disabled = true;
-    btn.textContent = "Sending request...";
+    btn.textContent = "Preparing WhatsApp...";
 
     try {
-      var result = await db.functions.invoke(
-        "booking-workflow",
-        {
-          body: {
-            name: name,
-            whatsapp: phone,
-            service: service,
-            date: date,
-            time: timeEl.value,
-            notes: notes
-          }
+      // Save a pending booking in Supabase first.
+      // The database checks availability and prevents overlaps.
+      var result = await db.rpc("request_booking", {
+        p_name: name,
+        p_whatsapp: phone,
+        p_service: service,
+        p_date: date,
+        p_time: timeEl.value,
+        p_notes: notes || null
+      });
+
+      if (result.error || !result.data) {
+        console.error("Booking error:", result.error);
+
+        var errorText =
+          result.error && result.error.message
+            ? result.error.message
+            : "";
+
+        if (
+          errorText.includes("SLOT_UNAVAILABLE") ||
+          errorText.toLowerCase().includes("conflict")
+        ) {
+          showError(
+            "Sorry, this appointment time has just been taken. Please choose another available time."
+          );
+        } else {
+          showError(
+            "We could not save your booking request. Please refresh the page and try again."
+          );
         }
-      );
-
-      if (
-        result.error ||
-        !result.data ||
-        !result.data.success
-      ) {
-        console.error(
-          "Booking request error:",
-          result.error,
-          result.data
-        );
-
-        showError(
-          result.data && result.data.error
-            ? result.data.error
-            : "We could not submit your request. Please try again."
-        );
 
         return;
       }
 
-      // Show successful request message
-      form.hidden = true;
+      // Prepare WhatsApp message for Tricia
+      var message =
+        "Hello Tricia! I would like to request an appointment at TRICIAS BEAUTY CONNER.\n\n" +
+        "Name: " + name + "\n" +
+        "My WhatsApp number: " + phone + "\n" +
+        "Hairstyle: " + service + "\n" +
+        "Preferred date: " + date + "\n" +
+        "Preferred time: " + timeEl.value + "\n" +
+        "Booking reference: " + result.data + "\n";
 
-      var fallback = $("#wa-fallback");
-
-      if (fallback) {
-        fallback.hidden = true;
+      if (notes) {
+        message += "Additional information: " + notes + "\n";
       }
 
-      $("#booking-success").hidden = false;
+      message +=
+        "\nPlease confirm whether this appointment is suitable. Thank you!";
 
-      $("#booking-success").scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
+      var whatsappUrl =
+        "https://wa.me/34631653956?text=" +
+        encodeURIComponent(message);
+
+      // Open WhatsApp with the prepared message
+      window.location.href = whatsappUrl;
 
     } catch (error) {
       console.error("Booking error:", error);
 
       showError(
-        "Something went wrong. Please try again."
+        "Something went wrong. Please refresh the page and try again."
       );
 
     } finally {
       btn.disabled = false;
-      btn.textContent = "Request Appointment";
+      btn.textContent = "BOOK VIA WHATSAPP";
     }
   });
 
