@@ -319,7 +319,7 @@
         "Hairstyle: " + service + "\n" +
         "Preferred date: " + date + "\n" +
         "Preferred time: " + timeEl.value + "\n" +
-        "Booking reference: " + result.data + "\n";
+        
 
       if (notes) {
         message += "Additional information: " + notes + "\n";
