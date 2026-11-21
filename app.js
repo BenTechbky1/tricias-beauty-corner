@@ -311,15 +311,14 @@
         return;
       }
 
-      // Prepare WhatsApp message for Tricia
+      // Prepare WhatsApp message without booking reference
       var message =
         "Hello Tricia! I would like to request an appointment at TRICIAS BEAUTY CONNER.\n\n" +
         "Name: " + name + "\n" +
         "My WhatsApp number: " + phone + "\n" +
         "Hairstyle: " + service + "\n" +
         "Preferred date: " + date + "\n" +
-        "Preferred time: " + timeEl.value + "\n" +
-        
+        "Preferred time: " + timeEl.value + "\n";
 
       if (notes) {
         message += "Additional information: " + notes + "\n";
