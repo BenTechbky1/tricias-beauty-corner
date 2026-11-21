@@ -315,7 +315,7 @@
     </div>
 
 
-    
+
     <!-- TIKTOK VIDEOS -->
     <div class="work-subheading">
       <h3>From TikTok</h3>
@@ -549,7 +549,22 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js"></script>
+
 <script src="app.js"></script>
+
+<script>
+  document.querySelectorAll('.work-card video').forEach(video => {
+    video.addEventListener('error', () => {
+      video.closest('.work-card')?.remove();
+    });
+
+    if (video.error) {
+      video.closest('.work-card')?.remove();
+    }
+  });
+</script>
+
+</body>
 
 </body>
 </html>
