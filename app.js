@@ -276,8 +276,8 @@
     btn.textContent = "Preparing WhatsApp...";
 
     try {
-      // Save a pending booking in Supabase first.
-      // The database checks availability and prevents overlaps.
+      // Save a confirmed booking in Supabase.
+      // The database checks availability and prevents overlapping bookings.
       var result = await db.rpc("request_booking", {
         p_name: name,
         p_whatsapp: phone,
@@ -328,8 +328,11 @@
       message +=
         "\nPlease confirm whether this appointment is suitable. Thank you!";
 
+      // Use the WhatsApp number from config.js
       var whatsappUrl =
-        "https://wa.me/34631653956?text=" +
+        "https://wa.me/" +
+        cfg.WHATSAPP_NUMBER +
+        "?text=" +
         encodeURIComponent(message);
 
       // Open WhatsApp with the prepared message
