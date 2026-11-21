@@ -130,16 +130,6 @@ p {
   box-shadow: 0 10px 24px rgba(62,42,31,.18);
 }
 
-.btn:focus-visible,
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid var(--brown);
-  outline-offset: 3px;
-}
-
 .btn-outline {
   background: transparent;
   color: var(--brown);
@@ -292,7 +282,6 @@ textarea:focus-visible {
   background: #3E2A1F;
 }
 
-/* Hero video */
 .hero-video {
   position: absolute;
   inset: 0;
@@ -304,7 +293,6 @@ textarea:focus-visible {
   transform: none;
 }
 
-/* Hero overlay */
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -317,7 +305,6 @@ textarea:focus-visible {
   );
 }
 
-/* Hero text */
 .hero-content {
   position: relative;
   z-index: 2;
@@ -439,6 +426,122 @@ textarea:focus-visible {
 .service-body p {
   color: var(--brown-soft);
   flex: 1;
+}
+
+/* MY WORK GALLERY */
+.my-work {
+  background: var(--white);
+}
+
+.my-work .section-head {
+  margin-bottom: 3.5rem;
+}
+
+.work-subheading {
+  text-align: center;
+  margin: 3rem 0 1.8rem;
+}
+
+.work-subheading h3 {
+  color: var(--brown);
+  display: inline-block;
+  position: relative;
+  padding-bottom: .7rem;
+}
+
+.work-subheading h3::after {
+  content: "";
+  position: absolute;
+  width: 55px;
+  height: 2px;
+  background: var(--champagne);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.work-card {
+  min-width: 0;
+  background: var(--cream);
+  border: 1px solid rgba(201,169,110,.25);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(62,42,31,.07);
+  transition: transform .35s var(--ease),
+              box-shadow .35s var(--ease);
+}
+
+.work-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(62,42,31,.13);
+}
+
+.work-card img,
+.work-card video {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  background: var(--beige);
+}
+
+.work-card video {
+  object-fit: cover;
+}
+
+.work-card p {
+  text-align: center;
+  margin: 0;
+  padding: .8rem .5rem;
+  color: var(--brown);
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+}
+
+.work-social {
+  margin: 3.5rem auto 0;
+  text-align: center;
+  padding: 2rem 1rem;
+  background: var(--cream);
+  border-top: 1px solid rgba(201,169,110,.35);
+  border-bottom: 1px solid rgba(201,169,110,.35);
+}
+
+.work-social p {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  margin-bottom: 1.2rem;
+}
+
+.work-social a {
+  display: inline-block;
+  margin: .4rem .5rem;
+  padding: .75rem 1.2rem;
+  border: 1px solid var(--champagne-deep);
+  color: var(--brown);
+  text-decoration: none;
+  font-size: .8rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  transition: background .3s, color .3s;
+}
+
+.work-social a:hover {
+  background: var(--champagne);
+  color: var(--white);
+}
+
+.work-book {
+  text-align: center;
+  margin-top: 2.5rem;
 }
 
 /* BOOKING */
@@ -605,6 +708,25 @@ input:focus, select:focus, textarea:focus {
   background: var(--beige);
 }
 
+.contact-details {
+  text-align: center;
+  margin: 40px auto;
+  width: 100%;
+  max-width: 600px;
+}
+
+.contact-details p {
+  text-align: center;
+}
+
+.contact-details .btn {
+  display: inline-block;
+}
+
+.contact-details .btn-outline {
+  color: #ffffff;
+}
+
 /* FOOTER */
 .site-footer {
   background: #2a1c14;
@@ -699,6 +821,11 @@ input:focus, select:focus, textarea:focus {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .work-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.4rem;
+  }
+
   .booking-form {
     grid-template-columns: 1fr 1fr;
     padding: 2.5rem;
@@ -739,12 +866,16 @@ input:focus, select:focus, textarea:focus {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .work-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
   .contact-grid {
     grid-template-columns: 1fr 1fr;
     align-items: center;
   }
 }
-
 
 /* IPHONE HERO VIDEO FIX */
 @media screen and (max-width: 768px) {
@@ -799,10 +930,6 @@ input:focus, select:focus, textarea:focus {
   }
 }
 
-
-
-
-
 /* ABOUT LOGO */
 .about-image {
   aspect-ratio: 1 / 1;
@@ -824,23 +951,15 @@ input:focus, select:focus, textarea:focus {
 }
 
 
-.contact-details {
-  text-align: center;
-  margin: 40px auto;
+
+
+
+/* TIKTOK VIDEO EMBEDS */
+.work-card iframe {
+  display: block;
   width: 100%;
-  max-width: 600px;
-}
-
-.contact-details p {
-  text-align: center;
-}
-
-.contact-details .btn {
-  display: inline-block;
-}
-
-
-
-.contact-details .btn-outline {
-  color: #ffffff;
+  aspect-ratio: 9 / 16;
+  height: auto;
+  border: 0;
+  border-radius: 4px;
 }
