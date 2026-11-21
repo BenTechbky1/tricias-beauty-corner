@@ -7,13 +7,57 @@
   <title>TRICIAS BEAUTY CONNER | Beauty begins with your hair.</title>
   <meta name="description" content="TRICIAS BEAUTY CONNER – professional hairstyling, wig installation, braids, cornrows and protective styles. Book your appointment through WhatsApp.">
   <meta name="theme-color" content="#C9A96E">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* TIKTOK VIDEO LAYOUT */
+    #my-work .tiktok-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      align-items: start;
+    }
+
+    #my-work .tiktok-grid .work-card {
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    #my-work .tiktok-grid iframe {
+      display: block;
+      width: 100%;
+      height: 570px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 600px) {
+      #my-work .tiktok-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #my-work .tiktok-grid .work-card {
+        max-width: 320px;
+        width: 100%;
+      }
+
+      #my-work .tiktok-grid iframe {
+        height: 570px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
+<!-- HEADER -->
 <header class="site-header" id="top">
   <a class="brand" href="#top" aria-label="TRICIAS BEAUTY CONNER – home">
     <svg class="logo" viewBox="0 0 48 48" aria-hidden="true">
@@ -70,11 +114,9 @@
   <div class="container about-grid">
 
     <div class="about-image reveal">
-      <img
-        src="images/tricias-logo.jpg"
-        alt="Tricias Beauty Conner logo"
-        class="about-logo"
-      >
+      <img src="images/tricias-logo.jpg"
+           alt="Tricias Beauty Conner logo"
+           class="about-logo">
     </div>
 
     <div class="about-text reveal">
@@ -109,6 +151,7 @@
 <!-- SERVICES -->
 <section class="section services" id="services">
   <div class="container">
+
     <div class="section-head reveal">
       <p class="eyebrow">Our hair services</p>
       <h2>Styles made for you</h2>
@@ -253,75 +296,19 @@
     <div class="work-grid">
 
       <article class="work-card">
-        <video controls playsinline preload="metadata" onerror="this.closest('.work-card').remove()">
+        <video controls playsinline preload="metadata">
           <source src="videos/works/Customer-1.mp4" type="video/mp4">
         </video>
       </article>
 
-     <!--  <article class="work-card">
-        <video controls playsinline preload="metadata" onerror="this.closest('.work-card').remove()">
-          <source src="videos/works/Customer-2.mp4" type="video/mp4">
-        </video>
-      </article>
+    </div>
 
-      <article class="work-card">
-        <video controls playsinline preload="metadata" onerror="this.closest('.work-card').remove()">
-          <source src="videos/works/Customer-3.mp4" type="video/mp4">
-        </video>
-      </article>
-
-      <article class="work-card">
-        <video controls playsinline preload="metadata" onerror="this.closest('.work-card').remove()">
-          <source src="videos/works/Customer-4.mp4" type="video/mp4">
-        </video>
-      </article>
-
-      <article class="work-card">
-        <video controls playsinline preload="metadata" onerror="this.closest('.work-card').remove()">
-          <source src="videos/works/Customer-5.mp4" type="video/mp4">
-        </video>
-      </article>
-
-      <article class="work-card">
-        <video controls playsinline preload="metadata" onerror="this.closest('.work-card').remove()">
-          <source src="videos/works/Customer-6.mp4" type="video/mp4">
-        </video>
-      </article>
-
-      <article class="work-card">
-        <video controls playsinline preload="metadata" onerror="this.closest('.work-card').remove()">
-          <source src="videos/works/Customer-7.mp4" type="video/mp4">
-        </video>
-      </article>
-
-      <article class="work-card">
-        <video controls playsinline preload="metadata" onerror="this.closest('.work-card').remove()">
-          <source src="videos/works/Customer-8.mp4" type="video/mp4">
-        </video>
-      </article>
-
-      <article class="work-card">
-        <video controls playsinline preload="metadata" onerror="this.closest('.work-card').remove()">
-          <source src="videos/works/Customer-9.mp4" type="video/mp4">
-        </video>
-      </article>
-
-      <article class="work-card">
-        <video controls playsinline preload="metadata" onerror="this.closest('.work-card').remove()">
-          <source src="videos/works/Customer-10.mp4" type="video/mp4">
-        </video>
-      </article>
-
-    </div> -->
-
-
-
-    <!-- TIKTOK VIDEOS -->
-  <div class="work-subheading">
+    <!-- TIKTOK VIDEOS - SEPARATE SECTION BELOW CUSTOMER VIDEOS -->
+    <div class="work-subheading">
       <h3>From TikTok</h3>
     </div>
 
-    <div class="work-grid">
+    <div class="work-grid tiktok-grid">
 
       <article class="work-card">
         <iframe
@@ -355,12 +342,8 @@
 
     </div>
 
-
-
-
-
     <!-- SOCIAL MEDIA -->
-  <div class="work-social">
+    <div class="work-social">
       <p>See more of our hairstyles and videos:</p>
 
       <a href="https://www.instagram.com/tr_icia690/"
@@ -437,7 +420,7 @@
         <textarea id="notes" name="notes" rows="3" maxlength="600" placeholder="Hair length, size, colour, anything we should know…"></textarea>
       </div>
 
-      <!-- Spam trap -->
+      <!-- SPAM TRAP -->
       <div class="hp" aria-hidden="true">
         <label>
           Leave empty
@@ -503,19 +486,16 @@
       href="https://www.google.com/maps/search/?api=1&query=Pla%C3%A7a+dels+Sants+M%C3%A0rtirs%2C+Vic%2C+Catalonia"
       target="_blank"
       rel="noopener noreferrer"
-      class="btn btn-outline"
-    >
+      class="btn btn-outline">
       GET DIRECTIONS
     </a>
 
     <h3 style="margin-top: 2rem;">Follow us on TikTok</h3>
 
     <p>
-      <a
-        href="https://www.tiktok.com/@patboahemaa5"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href="https://www.tiktok.com/@patboahemaa5"
+         target="_blank"
+         rel="noopener noreferrer">
         @patboahemaa5
       </a>
     </p>
@@ -541,18 +521,27 @@
   </p>
 </footer>
 
+<!-- FLOATING WHATSAPP -->
 <a class="wa-float" href="https://wa.me/34631653956" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
     <path fill="currentColor" d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9.5L5 21.5V18H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm4 5.5a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H8Zm0 3.5a1 1 0 1 0 0 2h5a1 1 0 1 0 0-2H8Z"/>
   </svg>
 </a>
 
+<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js"></script>
-
 <script src="app.js"></script>
 
 <script>
+  // Remove missing customer photos.
+  document.querySelectorAll('.work-card img').forEach(img => {
+    img.addEventListener('error', () => {
+      img.closest('.work-card')?.remove();
+    });
+  });
+
+  // Remove customer videos that cannot load.
   document.querySelectorAll('.work-card video').forEach(video => {
     video.addEventListener('error', () => {
       video.closest('.work-card')?.remove();
@@ -563,8 +552,6 @@
     }
   });
 </script>
-
-</body>
 
 </body>
 </html>

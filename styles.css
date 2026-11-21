@@ -954,12 +954,48 @@ input:focus, select:focus, textarea:focus {
 
 
 
-/* TIKTOK VIDEO EMBEDS */
-.work-card iframe {
+/* TIKTOK VIDEOS - SEPARATE GALLERY */
+#my-work .tiktok-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+#my-work .tiktok-grid .work-card {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+#my-work .tiktok-grid iframe {
   display: block;
   width: 100%;
-  aspect-ratio: 9 / 16;
-  height: auto;
+  height: 570px;
   border: 0;
   border-radius: 4px;
+}
+
+/* TABLET */
+@media (max-width: 899px) {
+  #my-work .tiktok-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  #my-work .tiktok-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #my-work .tiktok-grid .work-card {
+    max-width: 320px;
+  }
+
+  #my-work .tiktok-grid iframe {
+    height: 570px;
+  }
 }
